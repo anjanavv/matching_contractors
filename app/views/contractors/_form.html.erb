@@ -1,0 +1,51 @@
+<%= form_for @contractor, html: {class: 'ui form'} do |f| %>
+    <% if @contractor.errors.any? %>
+      <div class="ui error message">
+          <h3><%= pluralize(@contractor.errors.count, "error") %> prohibited from being saved:</h3>
+
+          <ul class="list">
+              <% @contractor.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="field">
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+    </div>
+    <div class="field">
+        <%= f.label :latitude %>
+        <%= f.text_field :latitude %>
+    </div>
+    <div class="field">
+        <%= f.label :longitude %>
+        <%= f.text_field :longitude %>
+    </div>
+    <div class="field">
+        <%= f.label :min_budget %>
+        <%= f.text_field :min_budget %>
+    </div>
+    <div class="field">
+        <%= f.label :max_budget %>
+        <%= f.text_field :max_budget %>
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <%= f.check_box :has_design_services %>
+            <%= f.label :has_design_services %>
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <%= f.check_box :has_build_services %>
+            <%= f.label :has_build_services %>
+        </div>
+    </div>
+    <%= f.submit %>
+  <% end %>

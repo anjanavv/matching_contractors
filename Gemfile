@@ -41,7 +41,7 @@ gem 'turbolinks', '~> 5'
 #Use geocoder
 gem 'geocoder', '~> 1.3', '>= 1.3.7'
 
-gem 'semantic-ui-rails'
+gem 'semantic-ui-sass', '2.2.12.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

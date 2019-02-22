@@ -1,0 +1,35 @@
+<div class="ui sizer vertical segment">
+    <div class="ui large header">Constructors
+        <%= link_to "Projects", projects_path, class: "ui right floated button" %>
+        <%= link_to "Add constructors", new_contractor_path, class: "ui right floated button" %>
+    </div>
+</div>
+<table class="ui celled table">
+    <thead>
+        <tr><th>Name</th>
+            <th>Address</th>
+            <th>Max Budget</th>
+            <th>Min Budget</th>
+            <th>Offers design services</th>
+            <th>Offers build services</th>
+        </tr></thead>
+    <tbody>
+        <% if @contractors.present? %>
+          <% @contractors.each do |c| %>
+            <tr>
+                <td><%= c.name %></td>
+                <td><%= c.address %></td>
+                <td><%= c.max_budget %></td>
+                <td><%= c.min_budget %></td>
+                <td><%= c.has_design_services %></td>
+                <td><%= c.has_build_services %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+              <td><%= "No contractors added yet" %></td>
+          </tr>
+        <% end %>
+
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  renovation_project_id: 1
+  contractor_id: 1
+  contractor_accepted: false
+
+two:
+  renovation_project_id: 1
+  contractor_id: 1
+  contractor_accepted: false
