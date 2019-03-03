@@ -1,10 +1,35 @@
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="ui sizer vertical segment">
+    <div class="ui large header">Renovation Projects
+        <%= link_to "Contractors", contractors_path, class: "ui right floated button" %>
+        <%= link_to "Add projects", new_project_path, class: "ui right floated button" %>
+    </div>
+</div>
+<table class="ui celled table">
+    <thead>
+        <tr><th>Name</th>
+            <th>Address</th>
+            <th>Max Budget</th>
+            <th>Min Budget</th>
+            <th>Design services needed</th>
+            <th>Build services needed</th>
+        </tr></thead>
+    <tbody>
+        <% if @projects.present? %>
+          <% @projects.each do |p| %>
+            <tr>
+                <td><%= link_to p.name, project_path(p) %></td>
+                <td><%= p.address %></td>
+                <td><%= p.max_budget %></td>
+                <td><%= p.min_budget %></td>
+                <td><%= p.design_services_needed %></td>
+                <td><%= p.build_services_needed %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+              <td><%= "No projects added yet" %></td>
+          </tr>
+        <% end %>
+
+    </tbody>
+</table>

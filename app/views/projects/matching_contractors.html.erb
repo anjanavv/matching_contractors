@@ -1,9 +1,4 @@
-<div class="ui sizer vertical segment">
-    <div class="ui large header">Contractors
-        <%= link_to "Projects", projects_path, class: "ui right floated button" %>
-        <%= link_to "Add contractors", new_contractor_path, class: "ui right floated button" %>
-    </div>
-</div>
+<h3 class="ui header">Matching contractors</h3>
 <table class="ui celled table">
     <thead>
         <tr><th>Name</th>
@@ -12,22 +7,27 @@
             <th>Min Budget</th>
             <th>Offers design services</th>
             <th>Offers build services</th>
+            <th></th>
         </tr></thead>
     <tbody>
         <% if @contractors.present? %>
           <% @contractors.each do |c| %>
             <tr>
-                <td><%= link_to c.name, contractor_path(c) %></td>
+                <td><%= c.name %></td>
                 <td><%= c.address %></td>
                 <td><%= c.max_budget %></td>
                 <td><%= c.min_budget %></td>
                 <td><%= c.has_design_services %></td>
                 <td><%= c.has_build_services %></td>
+                <td>
+                    <%= link_to "Interested", interest_request_project_path(@project, {:contractor => c.id, status: 1}), method: :post %>
+                    <%= link_to "Not Interested", interest_request_project_path(@project, {:contractor => c.id, status: 2}), method: :post %>
+                </td>
             </tr>
           <% end %>
         <% else %>
           <tr>
-              <td><%= "No contractors added yet" %></td>
+              <td><%= "No contractors found" %></td>
           </tr>
         <% end %>
 

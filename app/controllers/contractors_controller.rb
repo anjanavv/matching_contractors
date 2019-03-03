@@ -1,14 +1,11 @@
 class ContractorsController < ApplicationController
   def index
-    if params[:search].present?
-      @contractors = Contractor.near(params[:search], 50, :order => :distance)
-    else
-      @contractors = Contractor.all
-    end
+    @contractors = Contractor.all
   end
 
   def show
     @contractor = Contractor.find(params[:id])
+    @requested_projects = @contractor.requested_projects
   end
 
   def new
@@ -23,31 +20,20 @@ class ContractorsController < ApplicationController
       render :new
     end
   end
-
-  def edit
-    @contractor = Contractor.find(params[:id])
-  end
-
-  def update
-    @contractor = Contractor.find(params[:id])
-    if @contractor.update_attributes(allowed_params)
-      redirect_to @contractor, :notice  => "Successfully updated locontractorcation."
+  
+  def interest_request
+    @requested_project = RequestedProject.find(params[:request_id])
+    if @requested_project.update_attributes(contractor_accepted: params[:status])
+      redirect_to contractor_url(@requested_project.contractor_id), :notice => "Status updated."
     else
-      render :edit
+      redirect_to contractor_url(@requested_project.contractor_id), :notice => "Status not updated."
     end
-  end
-
-  def destroy
-    @contractor = Contractor.find(params[:id])
-    @contractor.destroy
-
-    redirect_to contractors_url, :notice => "Successfully destroyed contractor."
   end
 
   private
 
   def allowed_params
-    params.require(:contractor).permit(:id, :name, :address, :latitude, 
-      :longitude, :min_budget, :max_budget, :has_design_services, :has_build_services)
+    params.require(:contractor).permit(:id, :name, :address, :min_budget, 
+      :max_budget, :has_design_services, :has_build_services)
   end
-  end
+end

@@ -1,10 +1,25 @@
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<h3 class="ui header">Project: <%= @project.name %></h3>
+<% unless @project.project_awarded %>
+  <div class="ui sizer vertical segment">
+      <div class="ui large header">Contractors
+          <%= link_to "Matching contractors", matching_contractors_project_path(@project), 
+            class: "ui right floated button" %>
+        </div>
+    </div>
+  <% end %>
+  <div class="ui top attached segment">
+      <p>Address: <%= @project.address %></p>
+  </div>
+  <div class="ui attached segment">
+      <p>Min Budget: <%= @project.min_budget %></p>
+  </div>
+  <div class="ui attached segment">
+      <p>Max Budget: <%= @project.max_budget %></p>
+  </div>
+  <div class="ui attached segment">
+      <p>Build service needed: <%= @project.build_services_needed %></p>
+  </div>
+  <div class="ui bottom attached segment">
+      <p>Design service needed: <%= @project.design_services_needed %></p>
+  </div>
+  <%= render partial: 'requested_history' %>

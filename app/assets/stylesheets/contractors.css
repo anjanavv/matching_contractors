@@ -1,1 +1,7 @@
 .ui.form .success.message, .ui.form .warning.message, .ui.form .error.message{ display: block !important;}
+body{
+    width: 70%;
+    margin: auto !important;
+    margin-top: 50px !important;
+
+}

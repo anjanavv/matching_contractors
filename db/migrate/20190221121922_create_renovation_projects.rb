@@ -9,6 +9,7 @@ class CreateRenovationProjects < ActiveRecord::Migration[5.2]
       t.float :max_budget
       t.boolean :design_services_needed
       t.boolean :build_services_needed
+      t.boolean :project_awarded, default: false
 
       t.timestamps
     end

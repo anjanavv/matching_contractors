@@ -1,10 +1,18 @@
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<h3 class="ui header">Project: <%= @contractor.name %></h3>
+
+<div class="ui top attached segment">
+    <p>Address: <%= @contractor.address %></p>
+</div>
+<div class="ui attached segment">
+    <p>Min Budget: <%= @contractor.min_budget %></p>
+</div>
+<div class="ui attached segment">
+  <p>Max Budget: <%= @contractor.max_budget %></p>
+</div>
+<div class="ui attached segment">
+  <p>Provides Build service: <%= @contractor.has_build_services %></p>
+</div>
+<div class="ui bottom attached segment">
+  <p>Provides Design service: <%= @contractor.has_design_services %></p>
+</div>
+<%= render partial: 'requested_history' %>

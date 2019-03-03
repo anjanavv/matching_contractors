@@ -1,10 +1,44 @@
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<%= form_for @project, url: projects_path, html: {class: 'ui form'} do |f| %>
+    <% if @project.errors.any? %>
+      <div class="ui error message">
+          <h3><%= pluralize(@project.errors.count, "error") %> prohibited from being saved:</h3>
+
+          <ul class="list">
+              <% @project.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="field">
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :min_budget %>
+        <%= f.text_field :min_budget %>
+    </div>
+    <div class="field">
+        <%= f.label :max_budget %>
+        <%= f.text_field :max_budget %>
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <%= f.check_box :design_services_needed %>
+            <%= f.label :design_services_needed %>
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <%= f.check_box :build_services_needed %>
+            <%= f.label :build_services_needed %>
+        </div>
+    </div>
+    <%= f.submit %>
+  <% end %>

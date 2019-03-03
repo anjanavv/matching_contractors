@@ -1,0 +1,35 @@
+<h3 class="ui header">Requested contractors</h3>
+<table class="ui celled table">
+    <thead>
+        <tr><th>Name</th>
+            <th>Address</th>
+            <th>Owner status</th>
+            <th>Contractor status</th>
+            <th>Project status</th>
+            <th></th>
+        </tr></thead>
+    <tbody>
+        <% if @requested_projects.present? %>
+          <% @requested_projects.each do |p| %>
+            <tr>
+                <td><%= p.contractor.name %></td>
+                <td><%= p.contractor.address %></td>
+                <td><%= p.owner_status %></td>
+                <td><%= p.contractor_status %></td>
+                <td><%= p.project_status %></td>
+                <td>
+                    <% if !@project.project_awarded and p.owner_interested == 1 and p.contractor_accepted == 1 %>
+                      <%= link_to "Interested", project_request_project_path(@project, {:request_id => p.id, status: 1}), method: :post %>
+                      <%= link_to "Not Interested", project_request_project_path(@project, {:request_id => p.id, status: 2}), method: :post %>
+                    <% end %>
+                </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+              <td><%= "No requests" %></td>
+          </tr>
+        <% end %>
+
+    </tbody>
+</table>
